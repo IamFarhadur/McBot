@@ -1,7 +1,8 @@
 require('dotenv').config()
 const mineflayer = require('mineflayer')
+const http = require('http')
 
-// Get Avenger names from .env and convert to array
+// 🔥 Load Avenger names from .env
 const avengersEnv = process.env.AVENGERS || 'Protik'
 const avengers = avengersEnv.split(',').map(name => name.trim()).filter(Boolean)
 
@@ -13,7 +14,7 @@ if (avengers.length === 0) {
 const randomAvenger = () => avengers[Math.floor(Math.random() * avengers.length)]
 const username = randomAvenger()
 
-// Heroic quotes
+// 🎤 Random hero quotes
 const heroicQuotes = [
   "Reporting for duty!",
   "Avengers, assemble!",
@@ -26,10 +27,9 @@ const heroicQuotes = [
   "Let's bring the thunder! ⚡",
 ]
 
-// Get random quote
 const getRandomQuote = () => heroicQuotes[Math.floor(Math.random() * heroicQuotes.length)]
 
-// Create bot
+// 🤖 Create the bot
 const bot = mineflayer.createBot({
   host: 'ChudirBhai.aternos.me',
   username: username,
@@ -56,7 +56,16 @@ function stopMovementLoop() {
   bot.clearControlStates()
 }
 
+// 🧠 Event listeners
 bot.on('spawn', startMovementLoop)
 bot.on('end', stopMovementLoop)
 bot.on('kicked', (reason) => console.log(`[${username}] Kicked:`, reason))
 bot.on('error', (err) => console.error(`[${username}] Error:`, err))
+
+// 🌐 Dummy HTTP server to keep Render happy
+const PORT = process.env.PORT || 3000
+http.createServer((req, res) => {
+  res.end("🛠️ Mineflayer bot is running on Render")
+}).listen(PORT, () => {
+  console.log(`🌐 Dummy HTTP server listening on port ${PORT}`)
+})
