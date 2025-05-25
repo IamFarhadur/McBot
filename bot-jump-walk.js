@@ -1,3 +1,4 @@
+require('dotenv').config()
 const mineflayer = require('mineflayer')
 
 // Random Avenger name generator
@@ -9,26 +10,29 @@ const avengers = [
 ]
 const randomAvenger = () => avengers[Math.floor(Math.random() * avengers.length)]
 
+// Use .env USERNAME if available, otherwise pick random
+const username = process.env.USERNAME || randomAvenger()
+
 // Create the bot
 const bot = mineflayer.createBot({
-  host: 'ChudirBhai.aternos.me',
-  username: randomAvenger(), 
+  host: 'ChudirBhai.aternos.me', // change this if needed
+  username: username,
   auth: 'offline'
 })
 
-// Function to run + jump forever
+// Run & jump forever
 function runAndJumpForever() {
   bot.setControlState('forward', true)
   bot.setControlState('jump', true)
-  bot.chat("Are you ready?") // New message
+  bot.chat("Are you ready?") // Send chat after spawn
 }
 
-// Trigger on every spawn (includes after death)
+// Auto-trigger after spawn
 bot.on('spawn', () => {
   runAndJumpForever()
 })
 
-// Clean up on disconnect
+// Handle disconnect
 bot.on('end', () => {
   bot.clearControlStates()
 })
