@@ -5,7 +5,7 @@ const avengers = [
   'IronMan', 'CaptainAmerica', 'Thor', 'Hulk',
   'BlackWidow', 'Hawkeye', 'Vision', 'Wanda',
   'SpiderMan', 'DoctorStrange', 'BlackPanther',
-  'AntMan', 'Falcon', 'WinterSoldier'
+  'AntMan', 'Falcon', 'WinterSoldier', 'CaptainMarvel', 'Loki'
 ]
 const randomAvenger = () => avengers[Math.floor(Math.random() * avengers.length)]
 
