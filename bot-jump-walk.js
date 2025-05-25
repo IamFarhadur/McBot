@@ -1,17 +1,19 @@
 require('dotenv').config()
 const mineflayer = require('mineflayer')
 
-// Avengers list
-const avengers = [
-  'IronMan', 'CaptainAmerica', 'Thor', 'Hulk',
-  'BlackWidow', 'Hawkeye', 'Vision', 'Wanda',
-  'SpiderMan', 'DoctorStrange', 'BlackPanther',
-  'AntMan', 'Falcon', 'WinterSoldier', 'CaptainMarvel1', 'Loki'
-]
-const randomAvenger = () => avengers[Math.floor(Math.random() * avengers.length)]
-const username = process.env.USERNAME || randomAvenger()
+// Get Avenger names from .env and convert to array
+const avengersEnv = process.env.AVENGERS || 'Protik'
+const avengers = avengersEnv.split(',').map(name => name.trim()).filter(Boolean)
 
-// Heroic spawn lines
+if (avengers.length === 0) {
+  console.error("⚠️ No Avenger names found in .env! Add AVENGERS=Name1,Name2,...")
+  process.exit(1)
+}
+
+const randomAvenger = () => avengers[Math.floor(Math.random() * avengers.length)]
+const username = randomAvenger()
+
+// Heroic quotes
 const heroicQuotes = [
   "Reporting for duty!",
   "Avengers, assemble!",
@@ -19,14 +21,15 @@ const heroicQuotes = [
   "Locked and loaded!",
   "Ready for action 💥",
   "Let's do this!",
-  "Your friendly neighborhood hero is here 🕸️",
-  "Standing by. Let's roll!",
+  "I am vengeance.",
   "I am inevitable.",
-  "For justice! ⚖️"
+  "Let's bring the thunder! ⚡",
 ]
+
+// Get random quote
 const getRandomQuote = () => heroicQuotes[Math.floor(Math.random() * heroicQuotes.length)]
 
-// Create the bot
+// Create bot
 const bot = mineflayer.createBot({
   host: 'ChudirBhai.aternos.me',
   username: username,
@@ -48,20 +51,12 @@ function startMovementLoop() {
 }
 
 function stopMovementLoop() {
-  console.log(`[${username}] Bot has disconnected. Stopping movement.`)
-  if (movementInterval) {
-    clearInterval(movementInterval)
-    movementInterval = null
-  }
+  console.log(`[${username}] Disconnected. Cleaning up...`)
+  clearInterval(movementInterval)
   bot.clearControlStates()
 }
 
-// Events
 bot.on('spawn', startMovementLoop)
 bot.on('end', stopMovementLoop)
-bot.on('kicked', (reason) => {
-  console.log(`[${username}] Kicked:`, reason)
-})
-bot.on('error', (err) => {
-  console.error(`[${username}] Error:`, err)
-})
+bot.on('kicked', (reason) => console.log(`[${username}] Kicked:`, reason))
+bot.on('error', (err) => console.error(`[${username}] Error:`, err))
