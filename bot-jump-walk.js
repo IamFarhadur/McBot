@@ -3,7 +3,7 @@ const mineflayer = require('mineflayer')
 const http = require('http')
 
 // 🔥 Load Avenger names from .env
-const avengersEnv = process.env.AVENGERS || 'Protik'
+const avengersEnv = process.env.AVENGERS || 'Wanda💘'
 const avengers = avengersEnv.split(',').map(name => name.trim()).filter(Boolean)
 
 if (avengers.length === 0) {
