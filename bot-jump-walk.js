@@ -12,15 +12,21 @@ if (avengers.length === 0) {
 }
 
 const heroicQuotes = [
-  "Reporting for duty!",
-  "Avengers, assemble!",
-  "Time to save the world 🌍",
-  "Locked and loaded!",
-  "Ready for action 💥",
-  "Let's do this!",
-  "I am vengeance.",
   "I am inevitable.",
-  "Let's bring the thunder! ⚡",
+  "The end is near.",
+  "Kneel before your king.",
+  "Chaos is a ladder.",
+  "Let the world burn 🔥",
+  "There are no heroes here.",
+  "You can't stop what's coming.",
+  "Power is the only truth.",
+  "I'll enjoy watching you fail.",
+  "The universe will be mine.",
+  "Your resistance is meaningless.",
+  "Now, run.",
+  "This is just the beginning.",
+  "All will kneel.",
+  "Hope is a lie.",
 ]
 
 function getRandomAvenger() {
