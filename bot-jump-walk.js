@@ -57,7 +57,7 @@ function createBotInstance() {
     setTimeout(() => {
       console.log(`[${username}] Time's up! Disconnecting bot...`)
       bot.quit()
-    }, 2 * 60 * 1000)
+    }, 1 * 60 * 1000)
   }
 
   function stopMovementLoop() {
