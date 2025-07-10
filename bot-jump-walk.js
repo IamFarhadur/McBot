@@ -3,8 +3,8 @@ const mineflayer = require('mineflayer')
 const http = require('http')
 const util = require('minecraft-server-util') 
 
-const SERVER_HOST = 'ChudirBhai.aternos.me'
-const SERVER_PORT = 25565 
+const SERVER_HOST = 'pandabd.aternos.me'
+const SERVER_PORT = 42740 
 const RETRY_INTERVAL = 90 * 1000 // 1 minute 30 seconds
 
 const avengersEnv = process.env.AVENGERS || 'Natasha'
